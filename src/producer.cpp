@@ -12,8 +12,6 @@ void produce(ts_stack<int>& Q, int tasks_to_produce, int producer_id)
         int N;
         {
             std::lock_guard<std::mutex> Lk{ TaskMut };
-            if (NTasks < 0)
-                break;
             N = NTasks;
             NTasks -= 1;
         }
