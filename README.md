@@ -1,3 +1,3 @@
-# tread-safe-stack
-tread-safe stack
+# thread-safe-stack
+thread-safe stack
 
