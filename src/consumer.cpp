@@ -7,10 +7,10 @@ extern std::mutex TaskMut;
 extern std::vector<int> Consumed;
 extern std::mutex ConsMut;
 
-void consume(ts_stack<int>& Q, int tasks_to_consume, int consumer_id)
+void consume(ts_stack<int>& Q, int consumer_id)
 {
-    int consumed_count = 0;
-    while (consumed_count < tasks_to_consume)
+        int consumed_count = 0;
+    for(;;)
     {
         {
             std::lock_guard<std::mutex> Lk{ TaskMut };
