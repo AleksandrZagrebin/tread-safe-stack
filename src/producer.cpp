@@ -5,13 +5,15 @@
 extern int NTasks;
 extern std::mutex TaskMut;
 
-void produce(ts_stack<int>& Q, int tasks_to_produce, int producer_id)
+void produce(ts_stack<int>& Q, int producer_id)
 {
-    for (int i = 0; i < tasks_to_produce; ++i)
+    for (;;)
     {
         int N;
         {
             std::lock_guard<std::mutex> Lk{ TaskMut };
+            if (NTasks < 0)
+                break;
             N = NTasks;
             NTasks -= 1;
         }
